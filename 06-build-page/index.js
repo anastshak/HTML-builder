@@ -95,9 +95,12 @@ fs.readFile(templateHTML, 'utf-8', (err, tempData) => {
     );
 
     htmlFiles.forEach((file) => {
-      fs.readFile(path.join(components, file.name), 'utf-8', (err, data) => {
+      const filePath = path.join(components, file.name);
+      const fileName = file.name.split('.')[0];
+
+      fs.readFile(filePath, 'utf-8', (err, data) => {
         if (err) throw err;
-        let index = '{{' + file.name.split('.')[0] + '}}';
+        let index = '{{' + fileName + '}}';
         tempData = tempData.toString().replaceAll(index, data);
 
         fs.writeFile(projectDistHTML, tempData, (err) => {
