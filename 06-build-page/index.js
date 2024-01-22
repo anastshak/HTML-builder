@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const { error } = require('console');
 const fsPromises = require('fs').promises;
 
 const projectDist = path.join(__dirname, 'project-dist');
@@ -87,7 +86,7 @@ fs.readFile(templateHTML, 'utf-8', (err, tempData) => {
   if (err) throw err;
 
   fs.readdir(components, { withFileTypes: true }, (err, files) => {
-    if (err) throw error;
+    if (err) throw err;
 
     //select only html files
     const htmlFiles = files.filter(
